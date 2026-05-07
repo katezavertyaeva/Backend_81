@@ -1,0 +1,24 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.get("/", (_req, res) => {
+    res.status(200).json({ message: "Hello, World!!!!!" });
+});
+app.get("/old-path", (_req, res) => {
+    res.redirect(302, "/new-path");
+});
+app.get("/new-path", (_req, res) => {
+    res.status(200).json({ message: "Welcom" });
+});
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`
+        Server started on port ${PORT} \n http://localhost:${PORT}
+        `);
+});
+//# sourceMappingURL=index.js.map
